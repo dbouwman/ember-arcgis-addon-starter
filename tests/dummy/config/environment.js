@@ -16,7 +16,24 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+    torii: {
+      sessionServiceName: 'session',
+      providers: {
+        'arcgis-oauth-bearer': {
+          apiKey: 'zDbzLJW6W4tcxHkj'
+        }
+      }
+    },
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "* 'unsafe-inline' 'unsafe-eval' use.typekit.net connect.facebook.net maps.googleapis.com maps.gstatic.com",
+      'font-src': "* data: use.typekit.net",
+      'connect-src': "*",
+      'img-src': "*",
+      'style-src': "* 'unsafe-inline' use.typekit.net",
+      'frame-src': "*"
+    },
   };
 
   if (environment === 'development') {
@@ -40,6 +57,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.locationType = 'hash';
+    ENV.baseURL = '/ember-arcgis-page-layout/';
 
   }
 
